@@ -1,0 +1,78 @@
+Java란?
+  : "Write Once, Run Anywhere"라는 철학을 기반으로 만들어진 객체지향 프로그래밍 언어.
+
+Java의 특징
+  1. 객체지향Object-Oriented Programming) : 모든 것을 "객체"로 표현하고, 재사용성·유지보수성이 높음.
+  2. 풍부한 라이브러리 제공 : 자바 표준 라이브러리가 매우 많아서, 입출력·네트워크·스레드 등
+    다양한 기능을 손쉽게 구현 가능.
+  3. 플랫폼 독립성 : 자바 프로그램은 JVM(Java Virtual Machine) 위에서 실행되므로,
+    운영체제(Windows, macOS, Linux)에 관계없이 동작함.
+  4. 메모리 자동 관리 : "Garbage Collection". JVM이 사용하지 않는 객체를 자동으로 제거해서
+    메모리 관리 부담을 줄임.
+  5. 강한 타입 시스템 : 변수의 타입이 명확히 정의되어, 컴파일 시점에서 오류를 미리 방지.
+
+객체지향 4대 원칙
+  1. 추상화 : 복잡한 내부 동작은 감추고, 필요한 핵심 기능만 공개.
+    ex) interface or abstract class
+  2. 캡슐화 : 데이터(필드)와 기능(메서드)을 하나로 묶고, 외부 접근을 제한.
+    ex) private 변수 + getter/setter
+  3. 상속 : 부모클래스의 속성과 기능을 자식 클래스가 물려받음
+  4. 다형성 : 같은 메서드 호출이 상황(객체)에 따라 다르게 동작함
+
+      예시▼)
+          
+          // 1.추상화
+          interface Calculator {
+              int calculate(CalcInput input);
+          }
+          
+          // 2.캡슐화
+          class CalcInput {
+              private int num1;
+              private int num2;
+          
+              public CalcInput(int num1, int num2) {
+                  this.num1 = num1;
+                  this.num2 = num2;
+              }
+          
+              public int getNum1() { return num1; }
+              public int getNum2() { return num2; }
+          }
+          
+          // 3.상속
+          abstract class BasicCalculator {
+              protected void log(String msg) {
+                  System.out.println("[LOG] " + msg);
+              }
+          }
+          
+          // 4.다형성
+          class AddCalculator extends BasicCalculator implements Calculator {
+              @Override
+              public int calculate(CalcInput input) {
+                  log("덧셈 수행 중...");
+                  return input.getNum1() + input.getNum2();
+              }
+          }
+          
+          class SubCalculator extends BasicCalculator implements Calculator {
+              @Override
+              public int calculate(CalcInput input) {
+                  log("뺄셈 수행 중...");
+                  return input.getNum1() - input.getNum2();
+              }
+          }
+          
+          // Main 실행부
+          public class CalculatorMain {
+              public static void main(String[] args) {
+                  CalcInput input = new CalcInput(10, 5);
+          
+                  Calculator add = new AddCalculator();
+                  Calculator sub = new SubCalculator();
+          
+                  System.out.println("결과(덧셈): " + add.calculate(input));
+                  System.out.println("결과(뺄셈): " + sub.calculate(input));
+              }
+          }
