@@ -1,0 +1,27 @@
+▶ Spring Boot (Gradle 기반) 프로젝트 구조
+    gradle project
+    │
+    ├── build.gradle             ← "빌드 및 의존성 관리"
+    ├── settings.gradle          ← "프로젝트 구조 설정"
+    └── src/
+        ├── main/
+        │   ├── java/...         ← "실제 코드 (Controller, Service 등)"
+        │   └── resources/
+        │       ├── application.properties  ← "환경 설정 파일"
+        │       └── static/, templates/ 등
+        └── test/...
+
+▶ build.gradle
+    프로젝트의 의존성(라이브러리) 관리.
+    어떤 라이브러리를 사용할지, 빌드 방식을 정의함.
+    ex) spring-boot-starter-web, lombok, JPA 등 선언.
+
+▶ settings.gradle
+    프로젝트 이름과 포함할 모듈을 지정하는 파일.
+    멀티 모듈 프로젝트의 경우 어떤 하위 프로젝트를 포함할지 명시함.
+    비유하자면, build.gradle이 “내용물 설정서”. settings.gradle은 “프로젝트 전체의 목차”.
+
+▶ application.properties
+    애플리케이션의 환경 설정 파일.
+    서버 포트, DB 연결정보, 로깅 레벨, 파일경로 등을 지정함.
+    전통 MVC의 web.xml, root-context.xml 설정을 대체함. (스프링이 자동으로 읽어서 설정을 적용해줌)
