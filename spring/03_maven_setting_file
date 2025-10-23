@@ -1,0 +1,32 @@
+▶ Maven 프로젝트의 설정 파일 구조
+      maven project
+      │
+      ├── pom.xml               ← "프로젝트 전체 설정서"
+      │
+      └── src/main/webapp/WEB-INF/
+          ├── web.xml           ← "웹앱 입구"
+          ├── servlet-context.xml  ← "Spring MVC 설정(컨트롤러)"
+          └── root-context.xml     ← "백엔드(서비스, DAO) 설정"
+
+▶ pom.xml
+    프로젝트의 의존성(라이브러리) 관리.
+    빌드 정보, 플러그인, 버전 등을 명시.
+    ex) Spring MVC, MyBatis, JUnit을 사용하려면 pom.xml에 적어두면 Maven이 알아서 다운로드함.
+
+▶ web.xml
+    어떤 서블릿이 요청을 받을지 지정해줌.
+    스프링 설정 파일(servlet-context.xml) 연결.
+    필터, 인코딩 등을 설정함.
+    웹 요청이 처음 들어오면 여기서 길을 안내해줌.
+
+▶ servlet-context.xml
+    컨트롤러 중심(Spring MVC) 설정 파일.
+    @Controller, ViewResolver, 정적자원 매핑.
+    웹 계층(View, Controller) 설정 담당.
+    사용자 요청 → Controller → View 경로 정의서.
+
+▶ root-context.xml
+    비즈니스 로직(Spring Core) 설정 파일.
+    @Service, @Repository, DataSource, MyBatis 등
+    DB 연결이나 서비스 객체 등록 담당.
+    웹 바깥쪽의 핵심 로직 설정서.
